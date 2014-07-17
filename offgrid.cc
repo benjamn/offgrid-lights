@@ -35,6 +35,10 @@ public:
         }
     }
 
+    void write(int led, uint8_t r, uint8_t g, uint8_t b) {
+        write_gamma_color(&buffer.pixels[led], r, g, b);
+    }
+
     void blue(int led) {
         write_gamma_color(&buffer.pixels[led], 0x00, 0x00, 0xff);
     }
@@ -56,6 +60,14 @@ Handle<Value> Blue(const Arguments& args) {
     return args.This();
 }
 
+Handle<Value> Write(const Arguments& args) {
+    data->write(args[0]->IntegerValue(),
+                args[1]->IntegerValue(),
+                args[2]->IntegerValue(),
+                args[3]->IntegerValue());
+    return args.This();
+}
+
 Handle<Value> Send(const Arguments& args) {
     data->send();
     return args.This();
@@ -70,6 +82,7 @@ void init(Handle<Object> target) {
 
     NODE_SET_METHOD(target, "blank", Blank);
     NODE_SET_METHOD(target, "blue", Blue);
+    NODE_SET_METHOD(target, "write", Write);
     NODE_SET_METHOD(target, "send", Send);
 }
 
