@@ -38,6 +38,8 @@ public:
         }
 
         set_gamma(2.2, 2.2, 2.2);
+
+        blank();
     }
 
     ~TCLData() {
