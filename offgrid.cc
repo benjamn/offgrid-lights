@@ -2,6 +2,8 @@
 #include <stdio.h>
 #include <fcntl.h>
 #include <unistd.h>
+#include <errno.h>
+#include <string.h>
 
 #include "tclled.h"
 #include <node.h>
@@ -19,8 +21,22 @@ class TCLData {
 public:
     TCLData(int count): ledCount(count) {
         deviceFD = open(device, O_WRONLY);
-        spi_init(deviceFD);
-        tcl_init(&buffer, ledCount);
+
+        if (deviceFD < 0) {
+            fprintf(stderr, "Error %d: %s\n", errno, strerror(errno));
+            exit(1);
+        }
+
+        if (spi_init(deviceFD) < 0) {
+            fprintf(stderr, "SPI initialization error %d: %s\n", errno, strerror(errno));
+            exit(1);
+        }
+
+        if (tcl_init(&buffer, ledCount) < 0) {
+            fprintf(stderr, "Pixel buffer initialization error: Not enough memory.\n");
+            exit(1);
+        }
+
         set_gamma(2.2, 2.2, 2.2);
     }
 
