@@ -47,16 +47,27 @@ public:
 
     void blank() {
         for (int i = 0; i < ledCount; ++i) {
-            write_gamma_color(&buffer.pixels[i], 0, 0, 0);
+            write(i, 0, 0, 0);
         }
     }
 
     void write(int led, uint8_t r, uint8_t g, uint8_t b) {
-        write_gamma_color(&buffer.pixels[led], r, g, b);
+        if (led >= 0 &&
+            led < ledCount) {
+            write_gamma_color(&buffer.pixels[led], r, g, b);
+        }
+    }
+
+    void red(int led) {
+        write(led, 0xff, 0, 0);
+    }
+
+    void green(int led) {
+        write(led, 0, 0xff, 0);
     }
 
     void blue(int led) {
-        write_gamma_color(&buffer.pixels[led], 0x00, 0x00, 0xff);
+        write(led, 0, 0, 0xff);
     }
 
     void send() {
