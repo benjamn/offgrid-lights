@@ -105,7 +105,7 @@ static void cleanup(void *arg) {
 }
 
 void init(Handle<Object> target) {
-    node::AtExit(cleanup, data = new TCLData(100));
+    node::AtExit(cleanup, data = new TCLData(575));
 
     NODE_SET_METHOD(target, "blank", Blank);
     NODE_SET_METHOD(target, "blue", Blue);
