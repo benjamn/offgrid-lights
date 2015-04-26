@@ -17,7 +17,7 @@
  */
 
 /* The tcl_color structure consists of 4 bytes (32 bits) in the order in which
- * the p9813 chip expects them (flag byte, followed by blue, green, and red).
+ * the p9813 chip expects them (flag byte, followed by blue, green, and red). 
  * You can modify the colors directly, however the functions write_color and
  * write_gamma_color are designed to write to the appropriate data to memory
  * with a properly calculated flag byte.
@@ -31,7 +31,7 @@ typedef struct _tcl_color {
 
 /* The tcl_buffer structure is a buffer in which pixel data is stored in
  * in memory prior to being written out to the SPI device for transmission
- * to the pixels. A buffer can be allocated with the tcl_init function and
+ * to the pixels. A buffer can be allocated with the tcl_init function and 
  * deallocated with the tcl_free function. The buffer contains a pointer to
  * an array of tcl_color structures representing the array of colors you will
  * send to the leds using the send_buffer function. The "pixels" element of
