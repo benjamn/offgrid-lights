@@ -28,7 +28,7 @@
     "url": "https://github.com/benjamn/offgrid-lights/issues"
   },
   "scripts": {
-    "install": "node-gyp rebuild"
+    "install": "node-gyp --debug rebuild"
   },
   "gypfile": true,
   "engines": {
