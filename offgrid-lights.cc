@@ -72,6 +72,10 @@ void TCLData::send() {
   send_buffer(deviceFD, &buffer);
 }
 
+int TCLData::count() {
+  return ledCount;
+}
+
 static void Blank(const FunctionCallbackInfo<Value>& args) {
   data->blank();
   args.GetReturnValue().Set(args.This());
@@ -105,6 +109,10 @@ static void Send(const FunctionCallbackInfo<Value>& args) {
   args.GetReturnValue().Set(args.This());
 }
 
+static void Count(const FunctionCallbackInfo<Value>& args) {
+  args.GetReturnValue().Set(Integer::New(args.GetIsolate(), data->count()));
+}
+
 static void Init(const FunctionCallbackInfo<Value>& args) {
   delete data;
   data = new TCLData(args[0]->IntegerValue());
@@ -125,4 +133,5 @@ void init_lights(Local<Object> exports) {
   NODE_SET_METHOD(exports, "blue", Blue);
   NODE_SET_METHOD(exports, "write", Write);
   NODE_SET_METHOD(exports, "send", Send);
+  NODE_SET_METHOD(exports, "count", Count);
 }

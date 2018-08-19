@@ -9,3 +9,10 @@ exports.green = offgrid.green;
 exports.blue = offgrid.blue;
 exports.write = offgrid.write;
 exports.send = offgrid.send;
+
+Object.defineProperty(exports, "count", {
+  enumerable: true,
+  get() {
+    return offgrid.count();
+  }
+});

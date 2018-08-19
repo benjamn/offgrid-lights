@@ -14,6 +14,7 @@ public:
   void green(int led);
   void blue(int led);
   void send();
+  int count();
 
 private:
   int ledCount;
