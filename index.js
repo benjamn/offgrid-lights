@@ -1,6 +1,6 @@
 var offgrid = require('./build/Debug/offgrid');
 
-offgrid.init(575);
+offgrid.init(350);
 
 // Selectively re-export and/or wrap offgrid methods.
 exports.blank = offgrid.blank;
